@@ -43,9 +43,9 @@
 {%- if src is starting_with(pat="/") or src is starting_with(pat="http://") or src is starting_with(pat="https://") or src is starting_with(pat="//") or src is starting_with(pat="data:") -%}
 {%- set image_src = src -%}
 {%- elif page?.colocated_path -%}
-{%- set image_src = get_url(path=page.colocated_path ~ src) -%}
+{%- set image_src = get_url(path='@/' ~ page.colocated_path ~ src) -%}
 {%- elif section?.colocated_path -%}
-{%- set image_src = get_url(path=section.colocated_path ~ src) -%}
+{%- set image_src = get_url(path='@/' ~ section.colocated_path ~ src) -%}
 {%- else -%}
 {%- set image_src = src -%}
 {%- endif -%}
@@ -82,7 +82,7 @@
 {{ throw(message="ECharts requires a colocated JavaScript file. Pass page or section to the component.") }}
 {%- endif -%}
 {%- set chart_source = load_data(path=chart_path, format="plain") -%}
-<div class="echart" role="figure" aria-label="{{ title }}" style="width: {{ width }}; height: {{ height }};" data-chart-src="{{ get_url(path=chart_path) }}" data-chart-gl="{{ gl }}" data-state="loading"><p class="chart-status" role="status">Loading chart…</p></div>
+<div class="echart" role="figure" aria-label="{{ title }}" style="width: {{ width }}; height: {{ height }};" data-chart-src="{{ get_url(path='@/' ~ chart_path) }}" data-chart-gl="{{ gl }}" data-state="loading"><p class="chart-status" role="status">Loading chart…</p></div>
 <script type="module" src="{{ get_url(path="js/charts.js") }}"></script>
 <noscript><p>Enable JavaScript to view this chart.</p></noscript>
 {%- endcomponent echarts %}

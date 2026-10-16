@@ -6,7 +6,7 @@
   {%- elif image is starting_with(pat="/") -%}
     {%- set og_image = get_url(path=image) -%}
   {%- elif colocated_path -%}
-    {%- set og_image = get_url(path=colocated_path ~ image) -%}
+    {%- set og_image = get_url(path='@/' ~ colocated_path ~ image) -%}
   {%- else -%}
     {%- set og_image = get_url(path=image) -%}
   {%- endif -%}
